@@ -1,0 +1,15 @@
+# GKDI library cmake configuration file
+#
+# the following variables are defined:
+#   GKDI_INCLUDE_DIR - location of the headers
+#   GKDI_LIBRARY_DIR - location of the library
+#   GKDI_LIBRARY     - GKDI library name
+
+if(${GKDI_IN_BUILD_TREE})  
+  include("${CMAKE_BINARY_DIR}/GkdiBuildTreeSettings.cmake")
+else()
+  set(GKDI_INCLUDE_DIR ${CMAKE_INSTALL_INCLUDEDIR})
+  set(GKDI_LIBRARY_DIR ${CMAKE_INSTALL_LIBDIR})
+endif()
+
+set(GKDI_LIBRARY gkdiclient)

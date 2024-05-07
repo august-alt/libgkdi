@@ -1,0 +1,18 @@
+#include "idl_types.h"
+
+import "misc.idl", "security.idl";
+[uuid(b9785960-524f-11df-8b6d-83dcded72085)]
+[version(1.0)]
+[pointer_default(unique)]
+interface ISDKey {
+    HRESULT GetKey(
+        [in] uint32 cbTargetSD,
+        [in] [size_is(cbTargetSD)] [ref] char * pbTargetSD,
+        [in] [unique] GUID * pRootKeyID,
+        [in] int32 L0KeyID,
+        [in] int32 L1KeyID,
+        [in] int32 L2KeyID,
+        [out] uint32 * pcbOut,
+        [out] [size_is(, *pcbOut)] uint8 ** ppbOut);
+};
+  
