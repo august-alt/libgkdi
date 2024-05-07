@@ -30,9 +30,6 @@
 #include <locale.h>
 #include <errno.h>
 
-#include <openssl/md5.h>
-#include <openssl/hmac.h>
-
 #include <krb5.h>
 #include <gssapi/gssapi.h>
 #include <gssapi/gssapi_ext.h>
