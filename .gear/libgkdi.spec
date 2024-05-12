@@ -39,7 +39,7 @@ Client library for MS-GKDI
 %_includedir/gkdi/*.idl
 %_includedir/gkdi/*.h
 
-%_libdir/libgkdiclient.so
+%_libdir/libgkdiclient.so*
 
 %_libdir/gkdi/GkdiConfig.cmake
 
