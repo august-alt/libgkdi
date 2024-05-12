@@ -52,7 +52,7 @@ set(IDL_EXECUTABLE ${IDL_COMPILER})
 add_custom_target(
     generated_files
     ALL
-    COMMAND ${IDL_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/gkdi.idl --client --header --ndr-parser --outputdir=${CMAKE_CURRENT_SOURCE_DIR}
+    COMMAND ${IDL_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/gkdi.idl --client --header --ndr-parser
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     VERBATIM
 )
