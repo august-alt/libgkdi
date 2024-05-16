@@ -21,6 +21,15 @@ Source0: %name-%version.tar
 %description
 Client library for MS-GKDI
 
+%package devel
+Summary: MS-GKDI Libraries and Header Files
+Group: Development/C
+Requires: %name = %version-%release
+
+%description devel
+%name-devel contains the libraries and header files needed to
+develop programs which make use of %name
+
 %prep
 %setup -q
 
@@ -32,6 +41,9 @@ Client library for MS-GKDI
 %cmakeinstall_std
 
 %files
+%_libdir/libgkdiclient.so.*
+
+%files devel
 %doc README.md
 %doc INSTALL.md
 
@@ -39,7 +51,7 @@ Client library for MS-GKDI
 %_includedir/gkdi/*.idl
 %_includedir/gkdi/*.h
 
-%_libdir/libgkdiclient.so*
+%_libdir/libgkdiclient.so
 
 %_libdir/gkdi/GkdiConfig.cmake
 
