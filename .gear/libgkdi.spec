@@ -3,15 +3,17 @@
 
 Name: libgkdi
 Version: 0.0.1
-Release: alt1
+Release: alt2
 
 Summary: Client library for MS-GKDI
 License: GPLv2+
-Group: Development
+Group: Development/C
 Url: https://github.com/august-alt/libgkdi
 
 BuildRequires: rpm-macros-cmake cmake cmake-modules gcc-c++
-BuildRequires: samba-devel samba-common-libs
+BuildRequires: samba-devel samba-common-libs samba-pidl
+BuildRequires: libkrb5-devel libsasl2-devel libsasl2-plugin-gssapi
+
 BuildRequires: doxygen
 
 Requires: cmake
@@ -56,6 +58,13 @@ develop programs which make use of %name
 %_libdir/gkdi/GkdiConfig.cmake
 
 %changelog
+* Tue May 7 2024 Vladimir Rubanov <august@altlinux.org> 0.0.1-alt2
+- 0.0.1-alt2
+- Fixes:
+ - Add correct development group.
+ - Add pidl as build dependency.
+ - Correct library names in cmake file.
+
 * Tue May 7 2024 Vladimir Rubanov <august@altlinux.org> 0.0.1-alt1
 - 0.0.1-alt1
 - Initial build

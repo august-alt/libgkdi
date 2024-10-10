@@ -87,8 +87,10 @@ pkg_check_modules(Krb5GssAPI REQUIRED IMPORTED_TARGET krb5-gssapi)
 find_library(SAMBA4_SECURITY
     NAMES
         "libsamba-security-samba4.so"
+        "libsamba-security-private-samba.so"
     HINTS
         "/usr/lib64/samba/"
+        "/usr/lib/samba/"
         "/usr/lib/"
 )
 find_library(TEVENT_UTIL
@@ -96,13 +98,16 @@ find_library(TEVENT_UTIL
         "libtevent-util.so"
     HINTS
         "/usr/lib64/samba/"
+        "/usr/lib/samba/"
         "/usr/lib/"
 )
 find_library(SAMBA4_NDR
     NAMES
         "libndr-samba4.so"
+        "libndr-samba4-private-samba.so"
     HINTS
         "/usr/lib64/samba/"
+        "/usr/lib/samba/"
         "/usr/lib/"
 )
 

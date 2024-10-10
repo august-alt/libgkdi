@@ -37,6 +37,7 @@ RUN apt-get update \
     libsasl2-devel \
     libconfig-devel \
     libkrb5-devel \
+    libsasl2-plugin-gssapi \
     samba-devel \
     samba-common-libs \
     samba-pidl \
