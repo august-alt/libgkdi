@@ -86,13 +86,21 @@ interface ISDKey {
 		uint8 generator[key_length];
 	} FfcDhParameters;
 
+        typedef [public] struct {
+            [value(0x42504844), range(0x42504844, 0x42504844)] uint32 magic; /* 'DHPB' */
+            uint32 key_length;
+            uint8 field_order[key_length];
+            uint8 generator[key_length];
+            uint8 public_key[key_length];
+        } FfcDhKey;
+
 	typedef [public] struct {
 		GUID guid;
 		int32 l0_idx;
 		int32 l1_idx;
 		int32 l2_idx;
 		[flag(NDR_REMAINING)] DATA_BLOB target_security_descriptor;
-	} GkdiDerivationCtx;
+        } GkdiDerivationCtx;
 
     HRESULT GetKey(
         [in] uint32 cbTargetSD,
