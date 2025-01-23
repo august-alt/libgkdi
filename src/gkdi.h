@@ -13,6 +13,93 @@
 #ifndef _HEADER_ISDKey
 #define _HEADER_ISDKey
 
+/* bitmap EnvelopeFlags */
+#define ENVELOPE_FLAG_TRANSPORTING_PUBLIC_KEY ( 0x00000001 )
+#define ENVELOPE_FLAG_KEY_MAY_ENCRYPT_NEW_DATA ( 0x00000002 )
+
+struct KeyEnvelope {
+	uint32_t version;
+	uint32_t magic;/* [range(0x4b53444b,0x4b53444b),value(0x4b53444b)] */
+	uint32_t flags;
+	uint32_t l0_index;
+	uint32_t l1_index;/* [range(0,31)] */
+	uint32_t l2_index;/* [range(0,31)] */
+	struct GUID root_key_id;
+	uint32_t additional_info_len;
+	uint32_t domain_name_len;/* [value(2*ndr_charset_length(domain_name,CH_UTF16))] */
+	uint32_t forest_name_len;/* [value(2*ndr_charset_length(forest_name,CH_UTF16))] */
+	uint8_t *additional_info;/* [flag(LIBNDR_FLAG_IS_SECRET)] */
+	const char * domain_name;/* [flag(LIBNDR_FLAG_STR_NULLTERM|LIBNDR_FLAG_ALIGN2)] */
+	const char * forest_name;/* [flag(LIBNDR_FLAG_STR_NULLTERM|LIBNDR_FLAG_ALIGN2)] */
+}/* [public] */;
+
+struct GroupKeyEnvelope {
+	uint32_t version;
+	uint32_t magic;/* [range(0x4b53444b,0x4b53444b),value(0x4b53444b)] */
+	uint32_t flags;
+	uint32_t l0_index;
+	uint32_t l1_index;/* [range(0,31)] */
+	uint32_t l2_index;/* [range(0,31)] */
+	struct GUID root_key_id;
+	uint32_t kdf_algorithm_len;/* [value(2*ndr_charset_length(kdf_algorithm,CH_UTF16))] */
+	uint32_t kdf_parameters_len;
+	uint32_t secret_agreement_algorithm_len;/* [value(2*ndr_charset_length(secret_agreement_algorithm,CH_UTF16))] */
+	uint32_t secret_agreement_parameters_len;
+	uint32_t private_key_len;
+	uint32_t public_key_len;
+	uint32_t l1_key_len;
+	uint32_t l2_key_len;
+	uint32_t domain_name_len;/* [value(2*ndr_charset_length(domain_name,CH_UTF16))] */
+	uint32_t forest_name_len;/* [value(2*ndr_charset_length(forest_name,CH_UTF16))] */
+	const char * kdf_algorithm;/* [flag(LIBNDR_FLAG_STR_NULLTERM|LIBNDR_FLAG_ALIGN2)] */
+	uint8_t *kdf_parameters;
+	const char * secret_agreement_algorithm;/* [flag(LIBNDR_FLAG_STR_NULLTERM|LIBNDR_FLAG_ALIGN2)] */
+	uint8_t *secret_agreement_parameters;
+	const char * domain_name;/* [flag(LIBNDR_FLAG_STR_NULLTERM|LIBNDR_FLAG_ALIGN2)] */
+	const char * forest_name;/* [flag(LIBNDR_FLAG_STR_NULLTERM|LIBNDR_FLAG_ALIGN2)] */
+	uint8_t *l1_key;/* [flag(LIBNDR_FLAG_IS_SECRET)] */
+	uint8_t *l2_key;/* [flag(LIBNDR_FLAG_IS_SECRET)] */
+}/* [public] */;
+
+struct KdfParameters {
+	uint32_t padding_0;/* [value(0)] */
+	uint32_t padding_1;/* [value] */
+	uint32_t hash_algorithm_len;/* [value(2*ndr_charset_length(hash_algorithm,CH_UTF16))] */
+	uint32_t padding_2;/* [value(0)] */
+	const char * hash_algorithm;/* [flag(LIBNDR_FLAG_STR_NULLTERM|LIBNDR_FLAG_ALIGN2)] */
+}/* [public] */;
+
+struct FfcDhParameters {
+	uint32_t length;/* [value(12+2*key_length)] */
+	uint32_t magic;/* [range(0x4d504844,0x4d504844),value(0x4d504844)] */
+	uint32_t key_length;
+	uint8_t *field_order;
+	uint8_t *generator;
+}/* [public] */;
+
+struct FfcDhKey {
+	uint32_t magic;/* [range(0x42504844,0x42504844),value(0x42504844)] */
+	uint32_t key_length;
+	uint8_t *field_order;
+	uint8_t *generator;
+	uint8_t *public_key;
+}/* [public] */;
+
+struct ECDHKey {
+	uint32_t magic;/* [range(0x45434B31,0x45434B35)] */
+	uint32_t key_length;
+	uint8_t *x;
+	uint8_t *y;
+}/* [public] */;
+
+struct GkdiDerivationCtx {
+	struct GUID guid;
+	int32_t l0_idx;
+	int32_t l1_idx;
+	int32_t l2_idx;
+	DATA_BLOB target_security_descriptor;/* [flag(LIBNDR_FLAG_REMAINING)] */
+}/* [public] */;
+
 
 struct GetKey {
 	struct {
