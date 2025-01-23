@@ -84,6 +84,7 @@ pkg_check_modules(SambaCredentials REQUIRED IMPORTED_TARGET samba-credentials)
 pkg_check_modules(SambaHostconfig REQUIRED IMPORTED_TARGET samba-hostconfig)
 pkg_check_modules(SambaUtil REQUIRED IMPORTED_TARGET samba-util)
 pkg_check_modules(Krb5GssAPI REQUIRED IMPORTED_TARGET krb5-gssapi)
+
 find_library(SAMBA4_SECURITY
     NAMES
         "libsamba-security-samba4.so"
@@ -110,6 +111,15 @@ find_library(SAMBA4_NDR
         "/usr/lib/samba/"
         "/usr/lib/"
 )
+find_library(SAMBA4_ERRORS
+    NAMES
+        "libsamba-errors.so"
+        "libsamba-errors-private-samba.so"
+    HINTS
+        "/usr/lib64/samba/"
+        "/usr/lib/samba/"
+        "/usr/lib/"
+)
 
 # Target
 add_library(${LIBRARY_NAME} SHARED ${gkdi_client_SOURCES} ${gkdi_client_GEN_HEADERS} ${gkdi_local_client_GEN_SOURCES})
@@ -127,6 +137,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
     ${SAMBA4_SECURITY}
     ${TEVENT_UTIL}
     ${SAMBA4_NDR}
+    ${SAMBA4_ERRORS}
     PkgConfig::SambaUtil
     PkgConfig::Krb5GssAPI
 )
