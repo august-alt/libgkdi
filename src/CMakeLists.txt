@@ -127,6 +127,9 @@ add_library(${LIBRARY_NAME} SHARED ${gkdi_client_SOURCES} ${gkdi_client_GEN_HEAD
 # Soname
 set_target_properties(${LIBRARY_NAME} PROPERTIES VERSION "${LIB_GKDI_GEAR_VERSION}" SOVERSION "${LIB_GKDI_VERSION_MAJOR}")
 
+# Prevent OverLinking
+target_link_options(${LIBRARY_NAME} PRIVATE "LINKER:--as-needed")
+
 # Link libraries
 target_link_libraries(${LIBRARY_NAME} PUBLIC
     PkgConfig::Ndr
